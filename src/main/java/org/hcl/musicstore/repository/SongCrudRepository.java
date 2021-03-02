@@ -1,4 +1,8 @@
 package org.hcl.musicstore.repository;
 
-public interface SongCrudRepository {
+
+import org.hcl.musicstore.model.Song;
+import org.springframework.data.repository.CrudRepository;
+
+public interface SongCrudRepository extends CrudRepository<Song, Integer> {
 }

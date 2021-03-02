@@ -1,4 +1,8 @@
 package org.hcl.musicstore.repository;
 
-public interface FormatTypeCrudRepository {
+
+import org.hcl.musicstore.model.FormatType;
+import org.springframework.data.repository.CrudRepository;
+
+public interface FormatTypeCrudRepository extends CrudRepository<FormatType, Integer> {
 }
