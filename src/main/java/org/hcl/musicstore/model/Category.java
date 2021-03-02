@@ -23,4 +23,5 @@ public class Category {
 	
 	@Column(name="category_name")
 	String categoryName;
+	
 }
