@@ -1,4 +1,7 @@
 package org.hcl.musicstore.repository;
 
-public interface ShoppingCartCrudRepository {
+import org.hcl.musicstore.model.ShoppingCart;
+import org.springframework.data.repository.CrudRepository;
+
+public interface ShoppingCartCrudRepository extends CrudRepository<ShoppingCart, Integer> {
 }
