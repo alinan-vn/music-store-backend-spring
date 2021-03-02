@@ -1,4 +1,7 @@
 package org.hcl.musicstore.repository;
 
-public interface BillingInfoCrudRepository {
+import org.hcl.musicstore.model.BillingInfo;
+import org.springframework.data.repository.CrudRepository;
+
+public interface BillingInfoCrudRepository extends CrudRepository<BillingInfo, Integer> {
 }
