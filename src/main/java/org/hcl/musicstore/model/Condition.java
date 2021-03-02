@@ -23,5 +23,4 @@ public class Condition {
 	
 	@Column(name="condition_name")
 	String name;
-	
 }

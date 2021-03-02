@@ -32,5 +32,5 @@ public class Admin {
 	
 	@Column(name="password")
 	String password;
-	
+
 }
