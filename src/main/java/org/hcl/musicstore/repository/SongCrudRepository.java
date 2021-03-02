@@ -1,6 +1,5 @@
 package org.hcl.musicstore.repository;
 
-
 import org.hcl.musicstore.model.Song;
 import org.springframework.data.repository.CrudRepository;
 
