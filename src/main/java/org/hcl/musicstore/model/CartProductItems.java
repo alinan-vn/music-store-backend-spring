@@ -35,5 +35,4 @@ public class CartProductItems {
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "shopping_cart_id", nullable=false)
 	private ShoppingCart shoppingCart;
-
 }
