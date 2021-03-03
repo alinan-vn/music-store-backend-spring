@@ -32,7 +32,7 @@ public class ReceiptService {
         throw new Exception("receipt with " + id + " doesn't exist!");
 
     }
-/*
+
     public List<Receipt> findReceiptByCustomerId(int customer_id) throws Exception{
         List<Receipt> receipts = receiptCrudRepository.findReceiptByCustomerId(customer_id);
         if (!receipts.isEmpty()){
@@ -43,6 +43,12 @@ public class ReceiptService {
         throw new Exception("There isn't any receipts for customer with " + customer_id);
     }
 
- */
+    public Receipt saveReceipt(Receipt receipt){
+        return receiptCrudRepository.save(receipt);
+    }
+
+    public void deleteReceipt(Receipt receipt){
+        receiptCrudRepository.delete(receipt);
+    }
 
 }

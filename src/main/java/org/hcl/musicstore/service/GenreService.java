@@ -1,6 +1,7 @@
 package org.hcl.musicstore.service;
 
 
+
 import org.hcl.musicstore.model.Genre;
 
 import org.hcl.musicstore.repository.GenreCrudRepository;
@@ -17,6 +18,10 @@ public class GenreService {
 
     @Autowired
     GenreCrudRepository genreCrudRepository;
+
+    public Iterable<Genre> getAllGenre(){
+        return genreCrudRepository.findAll();
+    }
 
     public Optional<Genre> getGenre(int id) throws Exception{
         Optional<Genre> genre = genreCrudRepository.findById(id);
