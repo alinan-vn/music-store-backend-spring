@@ -3,7 +3,6 @@ package org.hcl.musicstore.service;
 import java.util.Optional;
 
 import org.hcl.musicstore.model.CartSongItems;
-import org.hcl.musicstore.model.Category;
 import org.hcl.musicstore.repository.CartSongItemsCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +31,10 @@ public class CartSongItemsService {
 		logger.error("cartSongItem is null");
 		throw new Exception("Cart Song Item not found");
 		
+	}
+	
+	public CartSongItems saveCartSongItems(CartSongItems cartSongItems) {
+		return cartSongItemsCrudRepository.save(cartSongItems);
 	}
 
 }

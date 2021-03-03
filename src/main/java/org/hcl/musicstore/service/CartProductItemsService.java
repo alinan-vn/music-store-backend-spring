@@ -3,7 +3,6 @@ package org.hcl.musicstore.service;
 import java.util.Optional;
 
 import org.hcl.musicstore.model.CartProductItems;
-import org.hcl.musicstore.model.Condition;
 import org.hcl.musicstore.repository.CartProductItemsCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +30,19 @@ public class CartProductItemsService {
 		
 		logger.error("cartProductItems is null");
 		throw new Exception("Cart Product Item not found");
+	}
+	
+	public CartProductItems saveCartProducts(CartProductItems cartProductItems) {
+		return cartProductItemsCrudRepository.save(cartProductItems);
+	}
+	
+	public void updateCartProductItems(int quantity, int id) throws Exception {
+		CartProductItems cartProductItems = cartProductItemsCrudRepository.findById(id).get();
+		if(cartProductItems!= null) {
+			cartProductItems.setQuantity(quantity);
+		}
+		
+		throw new Exception("Cannot find product");
 		
 		
 	}

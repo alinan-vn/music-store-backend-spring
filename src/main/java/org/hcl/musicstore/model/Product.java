@@ -34,6 +34,6 @@ public class Product {
 
     @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "condition_id", referencedColumnName = "id")
-    private Condition condition;
+    private ConditionType conditionType;
 
 }
