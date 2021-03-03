@@ -3,6 +3,7 @@ package org.hcl.musicstore.service;
 import java.util.Optional;
 
 import org.hcl.musicstore.model.Album;
+import org.hcl.musicstore.model.CartProductItems;
 import org.hcl.musicstore.repository.AlbumCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,10 @@ public class AlbumService {
 	
 	@Autowired
 	AlbumCrudRepository albumCrudRepository;
+	
+	public Iterable<Album> getAllAlbum(){
+        return albumCrudRepository.findAll();
+    }
 	
 	public Optional<Album> getAlbum(int id) throws Exception {
 		Optional<Album> album = albumCrudRepository.findById(id);

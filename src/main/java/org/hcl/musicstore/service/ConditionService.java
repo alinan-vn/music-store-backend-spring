@@ -16,6 +16,10 @@ public class ConditionService {
 	@Autowired
 	ConditionCrudRepository conditionCrudRepository;
 	
+	 public Iterable<Condition> getAllCondition(){
+	        return conditionCrudRepository.findAll();
+	    }
+	
 	public Optional<Condition> getCondition(int id) throws Exception {
 		Optional<Condition> condition = conditionCrudRepository.findById(id);
 		
@@ -28,5 +32,4 @@ public class ConditionService {
 		throw new Exception("Condition not found");
 	}
 	
-
 }
