@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface AdminCrudRepository extends CrudRepository<Admin, Integer> {
-    public Optional<Admin> findByUsername(String username);
+
+	public Admin findByUsername(String username);
 }

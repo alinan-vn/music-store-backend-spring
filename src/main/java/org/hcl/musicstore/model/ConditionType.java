@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Condition {
+public class ConditionType {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id")
 	int id;
 	
-	@Column(name="condition_name")
-	String name;
+	@Column(name="condition_namee")
+	String condition_name;
 	
 }

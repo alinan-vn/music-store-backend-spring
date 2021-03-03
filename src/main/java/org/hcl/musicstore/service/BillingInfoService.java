@@ -28,5 +28,10 @@ public class BillingInfoService {
 		throw new Exception("Billing Info not found");
 		
 	}
+	
+	public BillingInfo saveBillingInfo(BillingInfo customerInfo) {
+		return billingInfoCrudRepository.save(customerInfo);
+		
+	}
 
 }

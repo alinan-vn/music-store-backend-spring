@@ -2,7 +2,7 @@ package org.hcl.musicstore.service;
 
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Condition;
+import org.hcl.musicstore.model.ConditionType;
 import org.hcl.musicstore.repository.ConditionCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +16,12 @@ public class ConditionService {
 	@Autowired
 	ConditionCrudRepository conditionCrudRepository;
 	
-	 public Iterable<Condition> getAllCondition(){
+	 public Iterable<ConditionType> getAllCondition(){
 	        return conditionCrudRepository.findAll();
 	    }
 	
-	public Optional<Condition> getCondition(int id) throws Exception {
-		Optional<Condition> condition = conditionCrudRepository.findById(id);
+	public Optional<ConditionType> getCondition(int id) throws Exception {
+		Optional<ConditionType> condition = conditionCrudRepository.findById(id);
 		
 		if(condition != null) {
 			logger.info("condition: "+condition.toString());

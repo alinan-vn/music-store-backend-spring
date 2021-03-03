@@ -22,6 +22,6 @@ public class Album {
 	int id;
 	
 	@Column(name="album_name")
-	String album_name;
+	String albumName;
 
 }

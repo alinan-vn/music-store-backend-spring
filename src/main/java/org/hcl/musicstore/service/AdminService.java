@@ -21,6 +21,10 @@ public class AdminService {
 		logger.info("admin: "+ admin.toString());
 		return adminCrudRepository.findById(admin.getId()) != null;
 	}
+	
+	public Admin findByUsername(String username){
+		   return adminCrudRepository.findByUsername(username);
+		}
 
 	public Optional<Admin> findByUsername(String username){
 		return adminCrudRepository.findByUsername(username);

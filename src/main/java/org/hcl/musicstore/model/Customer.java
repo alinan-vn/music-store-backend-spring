@@ -10,6 +10,11 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(	name = "customer",
+uniqueConstraints = {
+		@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "email")
+})
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,5 +35,8 @@ public class Customer {
 
     @Column(name="password")
     String password;
+    
+    @Column(name="role")
+    private final String role = "user";
 
 }
