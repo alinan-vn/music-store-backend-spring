@@ -1,5 +1,6 @@
 package org.hcl.musicstore.service;
 
+import org.hcl.musicstore.model.Customer;
 import org.hcl.musicstore.model.FormatType;
 import org.hcl.musicstore.repository.FormatTypeCrudRepository;
 import org.slf4j.Logger;
@@ -14,10 +15,13 @@ public class FormatTypeService {
     private static Logger logger = LoggerFactory.getLogger(FormatTypeService.class);
 
     @Autowired
-    FormatTypeCrudRepository FormatTypeCrudRepository;
+    FormatTypeCrudRepository formatTypeCrudRepository;
 
+    public Iterable<FormatType> getAllFormatType(){
+        return formatTypeCrudRepository.findAll();
+    }
     public Optional<FormatType> getFormatType(int id) throws Exception{
-        Optional<FormatType> formatType= FormatTypeCrudRepository.findById(id);
+        Optional<FormatType> formatType= formatTypeCrudRepository.findById(id);
 
         if(formatType!= null) {
             logger.info("formatType: "+formatType.toString());
@@ -28,4 +32,6 @@ public class FormatTypeService {
         throw new Exception("formatType with " + id + " doesn't exist!");
 
     }
+
+
 }

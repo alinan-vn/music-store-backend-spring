@@ -19,6 +19,7 @@ public class ProductService {
     ProductCrudRepository productCrudRepository;
 
     public Iterable<Product> getAllProduct(){
+
         return productCrudRepository.findAll();
     }
 
@@ -33,6 +34,14 @@ public class ProductService {
         logger.error("product is null");
         throw new Exception("product with " + id + " doesn't exist");
 
+    }
+
+    public Product AddProduct(Product product){
+        return productCrudRepository.save(product);
+    }
+
+    public void DeleteProduct(Product product){
+        productCrudRepository.delete(product);
     }
 
 
