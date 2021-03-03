@@ -19,4 +19,7 @@ public class Genre {
 
     @Column(name= "genre_name")
     String name;
+
+    @Column(name="image")
+    String image;
 }
