@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,17 @@ public class ReceiptService {
         throw new Exception("receipt with " + id + " doesn't exist!");
 
     }
+/*
+    public List<Receipt> findReceiptByCustomerId(int customer_id) throws Exception{
+        List<Receipt> receipts = receiptCrudRepository.findReceiptByCustomerId(customer_id);
+        if (!receipts.isEmpty()){
+            logger.info("receipts:" + receipts.toString());
+            return receipts;
+        }
+        logger.error("receipts is null");
+        throw new Exception("There isn't any receipts for customer with " + customer_id);
+    }
+
+ */
 
 }
