@@ -1,5 +1,6 @@
 package org.hcl.musicstore.service;
 
+import org.hcl.musicstore.model.FormatType;
 import org.hcl.musicstore.model.Song;
 import org.hcl.musicstore.repository.SongCrudRepository;
 import org.slf4j.Logger;
@@ -16,6 +17,10 @@ public class SongService {
     @Autowired
     SongCrudRepository songCrudRepository;
 
+    public Iterable<Song> getAllSong(){
+        return songCrudRepository.findAll();
+    }
+
     public Optional<Song> getSong(int id) throws Exception {
         Optional<Song> song = songCrudRepository.findById(id);
         if(song != null){
@@ -24,6 +29,15 @@ public class SongService {
         }
         logger.error("song is null");
         throw new Exception("song with " + id + " doesn't exist!");
+    }
+
+    public Song AddSong(Song song){
+        return songCrudRepository.save(song);
+
+    }
+
+    public void DeleteSong(Song song){
+        songCrudRepository.delete(song);
     }
 
 

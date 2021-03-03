@@ -16,10 +16,13 @@ public class CustomerService {
     @Autowired
     CustomerCrudRepository customerCrudRepository;
 
-    public Iterable<Customer> getAllTasks(){
+    //find all customers
+    public Iterable<Customer> getAllCustomer(){
+
         return customerCrudRepository.findAll();
     }
 
+    //find customer by their id
     public Optional<Customer> getCustomer(int id) throws Exception{
         Optional<Customer> customer = customerCrudRepository.findById(id);
 
@@ -31,6 +34,28 @@ public class CustomerService {
         logger.error("customer is null");
         throw new Exception("customer with " + id + " doesn't exist!");
 
+    }
+    //find customer by their username
+    public Customer getCustomerByUsername(String username) throws Exception{
+        Customer customer = customerCrudRepository.findCustomerByUsername(username);
+
+        if(customer!= null) {
+            logger.info("customer: "+customer.toString());
+            return customer;
+        }
+
+        logger.error("customer is null");
+        throw new Exception("customer with " + username + " doesn't exist!");
+
+    }
+
+    //update and save Customer
+    public Customer updateAndSaveCustomer(Customer customer){
+        return customerCrudRepository.save(customer);
+    }
+
+    public void deleteCustomer(Customer customer){
+         customerCrudRepository.delete(customer);
     }
 
 

@@ -1,5 +1,6 @@
 package org.hcl.musicstore.service;
 
+import org.hcl.musicstore.model.FormatType;
 import org.hcl.musicstore.model.ShoppingCart;
 import org.hcl.musicstore.repository.ShoppingCartCrudRepository;
 import org.slf4j.Logger;
@@ -16,6 +17,10 @@ public class ShoppingCartService {
     @Autowired
     ShoppingCartCrudRepository shoppingCartCrudRepository;
 
+    public Iterable<ShoppingCart> getAllShoppingCart(){
+        return shoppingCartCrudRepository.findAll();
+    }
+
     public Optional<ShoppingCart> getShoppingCart(int id ) throws Exception {
         Optional<ShoppingCart> shoppingCart = shoppingCartCrudRepository.findById(id);
         if (shoppingCart != null) {
@@ -24,5 +29,12 @@ public class ShoppingCartService {
         }
         logger.error("shoppingCart is Null");
         throw new Exception("shoppingCart with " + id + " doesn't exist!");
+    }
+    public ShoppingCart saveShoppingCart(ShoppingCart shoppingCart){
+        return shoppingCartCrudRepository.save(shoppingCart);
+    }
+
+    public void deleteShoppingCart(ShoppingCart shoppingCart){
+         shoppingCartCrudRepository.delete(shoppingCart);
     }
 }
