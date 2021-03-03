@@ -3,6 +3,7 @@ package org.hcl.musicstore.service;
 import java.util.Optional;
 
 import org.hcl.musicstore.model.CartSongItems;
+import org.hcl.musicstore.model.Category;
 import org.hcl.musicstore.repository.CartSongItemsCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,10 @@ public class CartSongItemsService {
 	
 	@Autowired
 	CartSongItemsCrudRepository cartSongItemsCrudRepository;
+	
+	public Iterable<CartSongItems> getAllCartSong(){
+        return cartSongItemsCrudRepository.findAll();
+    }
 	
 	public Optional<CartSongItems> getCartSongItems(int id) throws Exception {
 		Optional<CartSongItems> cartSongItem = cartSongItemsCrudRepository.findById(id);

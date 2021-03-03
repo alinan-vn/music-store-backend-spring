@@ -3,6 +3,7 @@ package org.hcl.musicstore.service;
 import java.util.Optional;
 
 import org.hcl.musicstore.model.Category;
+import org.hcl.musicstore.model.Condition;
 import org.hcl.musicstore.repository.CategoryCrudRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,10 @@ public class CategoryService {
 	
 	@Autowired
 	CategoryCrudRepository categoryCrudRepository;
+	
+	public Iterable<Category> getAllCategory(){
+        return categoryCrudRepository.findAll();
+    }
 	
 	public Optional<Category> getCategory(int id) throws Exception {
 		Optional<Category> category = categoryCrudRepository.findById(id);
