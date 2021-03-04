@@ -2,6 +2,7 @@ package org.hcl.musicstore.controller;
 
 import java.util.Optional;
 
+import org.hcl.musicstore.model.Admin;
 import org.hcl.musicstore.model.Customer;
 import org.hcl.musicstore.service.CustomerService;
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,6 +27,19 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
+	@PostMapping(value="/customer/login")
+	public ResponseEntity<?> adminLogin(@RequestParam String username, @RequestParam String password) throws Exception{
+
+		Customer customer = customerService.findCustomerByUsername(username);
+
+		if(customerService.validateCustomer(customer)) {
+			if(customer.getUsername().equals(username) && customer.getPassword().equals(password)) {
+				return ResponseEntity.ok(customer);
+			}
+		}
+		return ResponseEntity.badRequest().body("Invalid customer credentials");
+	}
+	
 	@PostMapping("/savecustomer")
 	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer){
 		customerService.updateAndSaveCustomer(customer);

@@ -16,6 +16,11 @@ public class CustomerService {
     @Autowired
     CustomerCrudRepository customerCrudRepository;
 
+    public boolean validateCustomer(Customer customer) {
+		logger.info("customer: "+ customer.toString());
+		return customerCrudRepository.findById(customer.getId()) != null;
+	}
+    
     //find all customers
     public Iterable<Customer> findAllCustomer(){
 
