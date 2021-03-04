@@ -2,9 +2,8 @@ package org.hcl.musicstore.controller;
 
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Album;
+
 import org.hcl.musicstore.model.ShoppingCart;
-import org.hcl.musicstore.service.AlbumService;
 import org.hcl.musicstore.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +41,7 @@ public class ShoppingCartController {
 	}
 	
 	
-	@DeleteMapping("/deletealbum/{id}")
+	@DeleteMapping("/deleteshoppingcart/{id}")
 	public ResponseEntity<String> deleteShoppingcart(@PathVariable Integer id) throws Exception{
 		logger.info("Deleting shopping cart with id: "+ id);
 		boolean isRemoved = shoppingCartService.deleteShoppingById(id);

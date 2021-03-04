@@ -16,8 +16,8 @@ public class Product {
     @Column(name="id")
     int id;
 
-    @Column(name = "name")
-    String name;
+    @Column(name = "product_name")
+    String productName;
 
     @Column(name = "price")
     float price;

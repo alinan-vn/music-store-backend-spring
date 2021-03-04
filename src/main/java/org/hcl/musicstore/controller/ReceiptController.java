@@ -3,9 +3,7 @@ package org.hcl.musicstore.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Receipt;
-import org.hcl.musicstore.service.AlbumService;
 import org.hcl.musicstore.service.ReceiptService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -37,7 +37,7 @@ public class CartProductItemsController {
 		return new ResponseEntity<CartProductItems>(HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletebillinginfo/{id}")
+	@DeleteMapping("/deletecartproductitems/{id}")
 	public ResponseEntity<String> deleteCartProductItem(@PathVariable Integer id) throws Exception{
 		logger.info("Deleting cartProductItem with id: "+ id);
 		boolean isRemoved = cartProductItemsService.deleteCartProductItemById(id);
