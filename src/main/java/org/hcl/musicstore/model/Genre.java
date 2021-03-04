@@ -18,7 +18,7 @@ public class Genre {
     int id;
 
     @Column(name= "genre_name")
-    String name;
+    String genreName;
 
     @Column(name="image")
     String image;

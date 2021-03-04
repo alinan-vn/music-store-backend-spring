@@ -16,8 +16,8 @@ public class Song {
     @Column(name="id")
     int id;
 
-    @Column(name= "name")
-    String name;
+    @Column(name= "song_name")
+    String songName;
 
     @Column(name = "price")
     float price;

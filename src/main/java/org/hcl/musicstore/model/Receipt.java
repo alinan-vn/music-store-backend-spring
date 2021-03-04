@@ -18,7 +18,7 @@ public class Receipt {
     int id;
 
     @Column(name= "name")
-    String name;
+    String receiptName;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

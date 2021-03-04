@@ -37,7 +37,7 @@ public class SongService {
 
 	public Song findBySongName(String name) throws Exception {
 		
-		Song song = songCrudRepository.findSongByName(name);
+		Song song = songCrudRepository.findSongBySongName(name);
 		if (song != null) {
 			logger.info("album: " + song.toString());
 			return song;

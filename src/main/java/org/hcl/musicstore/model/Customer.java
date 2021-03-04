@@ -21,8 +21,8 @@ public class Customer {
     @Column(name="id")
     int id;
 
-    @Column(name="name")
-    String name;
+    @Column(name="customer_name")
+    String customerName;
 
     @Column(name="email")
     String email;
