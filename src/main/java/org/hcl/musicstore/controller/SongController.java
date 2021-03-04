@@ -2,9 +2,7 @@ package org.hcl.musicstore.controller;
 
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Song;
-import org.hcl.musicstore.service.AlbumService;
 import org.hcl.musicstore.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

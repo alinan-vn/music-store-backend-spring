@@ -36,7 +36,7 @@ public class FormatTypeController {
 		return formatTypeService.findAllFormatType();
 	}
 	
-	@GetMapping("/album/{id}")
+	@GetMapping("/formattype/{id}")
 	public ResponseEntity<FormatType> getAlbumById(@PathVariable Integer id) throws Exception{
 		Optional<FormatType> formatType = formatTypeService.findFormatTypeById(id);
 		
