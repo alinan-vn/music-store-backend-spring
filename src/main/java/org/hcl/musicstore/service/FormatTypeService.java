@@ -1,6 +1,6 @@
 package org.hcl.musicstore.service;
 
-import org.hcl.musicstore.model.Customer;
+import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.FormatType;
 import org.hcl.musicstore.repository.FormatTypeCrudRepository;
 import org.slf4j.Logger;
@@ -17,10 +17,11 @@ public class FormatTypeService {
     @Autowired
     FormatTypeCrudRepository formatTypeCrudRepository;
 
-    public Iterable<FormatType> getAllFormatType(){
+    public Iterable<FormatType> findAllFormatType(){
         return formatTypeCrudRepository.findAll();
     }
-    public Optional<FormatType> getFormatType(int id) throws Exception{
+    
+    public Optional<FormatType> findFormatTypeById(int id) throws Exception{
         Optional<FormatType> formatType= formatTypeCrudRepository.findById(id);
 
         if(formatType!= null) {
@@ -31,6 +32,21 @@ public class FormatTypeService {
         logger.error("formatType is null");
         throw new Exception("formatType with " + id + " doesn't exist!");
 
+    }
+	
+	public FormatType saveFormatType(FormatType formatType) {
+		return formatTypeCrudRepository.save(formatType);
+	}
+	
+	public boolean deleteFormatTypeById(Integer id) throws Exception{
+		logger.info("deleting format type with id: "+id);
+		if(formatTypeCrudRepository.existsById(id)) {
+			formatTypeCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("format type is null");
+		throw new Exception("Format Type not found");
     }
 
 

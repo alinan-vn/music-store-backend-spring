@@ -30,6 +30,20 @@ public class CategoryService {
 		
 		logger.error("category is null");
 		throw new Exception("Category not found");
-		
 	}
+	
+	public Category saveCategory(Category category) {
+		return categoryCrudRepository.save(category);
+	}
+	
+	public boolean deleteCategoryById(Integer id) throws Exception{
+		logger.info("deleting Category with id: "+id);
+		if(categoryCrudRepository.existsById(id)) {
+			categoryCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("Category is null");
+		throw new Exception("Category not found");
+    }
 }

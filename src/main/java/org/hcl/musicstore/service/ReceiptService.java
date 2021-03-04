@@ -17,10 +17,11 @@ public class ReceiptService {
     @Autowired
     ReceiptCrudRepository receiptCrudRepository;
 
-    public Iterable<Receipt> getAllReceipts(){
+    public Iterable<Receipt> findAllReceipts(){
         return receiptCrudRepository.findAll();
     }
-    public Optional<Receipt> getReceipt(int id) throws Exception{
+    
+    public Optional<Receipt> findReceiptById(int id) throws Exception{
         Optional<Receipt> receipt = receiptCrudRepository.findById(id);
 
         if(receipt!= null) {
@@ -47,8 +48,15 @@ public class ReceiptService {
         return receiptCrudRepository.save(receipt);
     }
 
-    public void deleteReceipt(Receipt receipt){
-        receiptCrudRepository.delete(receipt);
+    public boolean deleteReceiptById(Integer id) throws Exception{
+		logger.info("deleting receipt with id: "+id);
+		if(receiptCrudRepository.existsById(id)) {
+			receiptCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("receipt is null");
+		throw new Exception("Receipt not found");
     }
 
 }

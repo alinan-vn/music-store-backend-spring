@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BillingInfoService {
-	private static Logger logger = LoggerFactory.getLogger(ConditionService.class);
+	private static Logger logger = LoggerFactory.getLogger(ConditionTypeService.class);
 	
 	@Autowired
 	BillingInfoCrudRepository billingInfoCrudRepository;
@@ -33,5 +33,16 @@ public class BillingInfoService {
 		return billingInfoCrudRepository.save(customerInfo);
 		
 	}
+	
+	public boolean deleteBillingInfoById(Integer id) throws Exception{
+		logger.info("deleting album with id: "+id);
+		if(billingInfoCrudRepository.existsById(id)) {
+			billingInfoCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("billingInfo is null");
+		throw new Exception("billingInfo not found");
+    }
 
 }

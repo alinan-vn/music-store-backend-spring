@@ -1,6 +1,5 @@
 package org.hcl.musicstore.service;
 
-import org.hcl.musicstore.model.FormatType;
 import org.hcl.musicstore.model.Song;
 import org.hcl.musicstore.repository.SongCrudRepository;
 import org.slf4j.Logger;
@@ -12,33 +11,51 @@ import java.util.Optional;
 
 @Service
 public class SongService {
-    private static Logger logger = LoggerFactory.getLogger(SongService.class);
+	private static Logger logger = LoggerFactory.getLogger(SongService.class);
 
-    @Autowired
-    SongCrudRepository songCrudRepository;
+	@Autowired
+	SongCrudRepository songCrudRepository;
 
-    public Iterable<Song> getAllSong(){
-        return songCrudRepository.findAll();
+	public Iterable<Song> findAllSong() {
+		return songCrudRepository.findAll();
+	}
+
+	public Optional<Song> findSongById(int id) throws Exception {
+		Optional<Song> song = songCrudRepository.findById(id);
+		if (song != null) {
+			logger.info("song: " + song.toString());
+			return song;
+		}
+		logger.error("song is null");
+		throw new Exception("song with " + id + " doesn't exist!");
+	}
+
+	public Song saveAndUpdateSong(Song song) {
+		return songCrudRepository.save(song);
+
+	}
+
+	public Song findBySongName(String name) throws Exception {
+		
+		Song song = songCrudRepository.findSongByName(name);
+		if (song != null) {
+			logger.info("album: " + song.toString());
+			return song;
+		}
+		
+		logger.error("song is null");
+		throw new Exception("Song not found");
+	}
+	
+	public boolean deleteSongById(Integer id) throws Exception{
+		logger.info("deleting song with id: "+id);
+		if(songCrudRepository.existsById(id)) {
+			songCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("song is null");
+		throw new Exception("Song not found");
     }
-
-    public Optional<Song> getSong(int id) throws Exception {
-        Optional<Song> song = songCrudRepository.findById(id);
-        if(song != null){
-            logger.info("song: " + song.toString());
-            return song;
-        }
-        logger.error("song is null");
-        throw new Exception("song with " + id + " doesn't exist!");
-    }
-
-    public Song AddSong(Song song){
-        return songCrudRepository.save(song);
-
-    }
-
-    public void DeleteSong(Song song){
-        songCrudRepository.delete(song);
-    }
-
 
 }
