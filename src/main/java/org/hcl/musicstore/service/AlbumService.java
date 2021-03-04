@@ -44,4 +44,8 @@ public class AlbumService {
 		logger.error("album is null");
 		throw new Exception("Album not found");
 	}
+	
+	public Album saveAlbum(Album album) {
+		return albumCrudRepository.save(album);
+	}
 }
