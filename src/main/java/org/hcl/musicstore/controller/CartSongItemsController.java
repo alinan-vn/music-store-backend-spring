@@ -1,11 +1,16 @@
 package org.hcl.musicstore.controller;
 
-import javax.validation.Valid;
-
 import org.hcl.musicstore.model.CartSongItems;
 import org.hcl.musicstore.service.CartSongItemsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,13 +18,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class CartSongItemsController {
+	private static Logger logger = LoggerFactory.getLogger(CartSongItemsController.class);
 	
 	@Autowired
 	CartSongItemsService cartSongItemsService;
 	
 	@PostMapping("/savecartsongitems")
-	public CartSongItems addCartProductItems(@Valid @RequestBody CartSongItems cartSongItems) {
-		return cartSongItemsService.saveCartSongItems(cartSongItems);
+	public ResponseEntity<CartSongItems> saveCartSongItems(@RequestBody CartSongItems cartSongItems){
+		logger.info("Saving cartSongItems: "+ cartSongItems.toString());
+		cartSongItemsService.saveCartSongItems(cartSongItems);
+		return new ResponseEntity<CartSongItems>(HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatecartsongs/{id}")
+	public ResponseEntity<CartSongItems> updateCartProductItems(@RequestBody CartSongItems cartSongItems) throws Exception{
+		logger.info("Updating cartSongItems: "+ cartSongItems.toString());
+		cartSongItemsService.updateCartSongItems(cartSongItems);
+		return new ResponseEntity<CartSongItems>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/deletecartsong/{id}")
+	public ResponseEntity<String> deleteCartSongItem(@PathVariable Integer id) throws Exception{
+		logger.info("Deleting cartSongItem with id: "+ id);
+		boolean isRemoved = cartSongItemsService.deleteCartSongItemById(id);
+		
+		if(!isRemoved) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
 	}
 	
 }

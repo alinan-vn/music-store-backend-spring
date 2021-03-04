@@ -1,7 +1,5 @@
 package org.hcl.musicstore.service;
 
-
-
 import org.hcl.musicstore.model.Genre;
 
 import org.hcl.musicstore.repository.GenreCrudRepository;
@@ -19,11 +17,11 @@ public class GenreService {
     @Autowired
     GenreCrudRepository genreCrudRepository;
 
-    public Iterable<Genre> getAllGenre(){
+    public Iterable<Genre> findAllGenre(){
         return genreCrudRepository.findAll();
     }
 
-    public Optional<Genre> getGenre(int id) throws Exception{
+    public Optional<Genre> findGenreById(int id) throws Exception{
         Optional<Genre> genre = genreCrudRepository.findById(id);
 
         if(genre!= null) {
@@ -33,7 +31,21 @@ public class GenreService {
 
         logger.error("genre is null");
         throw new Exception("genre with " + id + " doesn't exist");
-
+    }
+    
+    public Genre saveAndUpdateGenre(Genre genre) {
+		return genreCrudRepository.save(genre);
+	}
+	
+	public boolean deleteGenreById(Integer id) throws Exception{
+		logger.info("deleting genre with id: "+id);
+		if(genreCrudRepository.existsById(id)) {
+			genreCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("genre is null");
+		throw new Exception("Genre not found");
     }
 
 }

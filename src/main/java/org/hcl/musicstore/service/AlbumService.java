@@ -48,4 +48,15 @@ public class AlbumService {
 	public Album saveAlbum(Album album) {
 		return albumCrudRepository.save(album);
 	}
+	
+	public boolean deleteAlbumById(Integer id) throws Exception{
+		logger.info("deleting album with id: "+id);
+		if(albumCrudRepository.existsById(id)) {
+			albumCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("album is null");
+		throw new Exception("Album not found");
+    }
 }
