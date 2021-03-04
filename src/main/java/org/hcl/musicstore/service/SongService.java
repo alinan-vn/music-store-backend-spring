@@ -15,12 +15,16 @@ public class SongService {
 
 	@Autowired
 	SongCrudRepository songCrudRepository;
+	
+	public Song findSongById(int id) {
+		return songCrudRepository.findSongById(id);
+	}
 
 	public Iterable<Song> findAllSong() {
 		return songCrudRepository.findAll();
 	}
 
-	public Optional<Song> findSongById(int id) throws Exception {
+	public Optional<Song> getSongById(int id) throws Exception {
 		Optional<Song> song = songCrudRepository.findById(id);
 		if (song != null) {
 			logger.info("song: " + song.toString());
@@ -32,7 +36,6 @@ public class SongService {
 
 	public Song saveAndUpdateSong(Song song) {
 		return songCrudRepository.save(song);
-
 	}
 
 	public Song findBySongName(String name) throws Exception {
@@ -57,5 +60,9 @@ public class SongService {
 		logger.error("song is null");
 		throw new Exception("Song not found");
     }
+	
+	public Song updateSong(Song song) {
+		return songCrudRepository.save(song);
+	}
 
 }

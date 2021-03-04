@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,4 +61,15 @@ public class AlbumController {
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
 	}
 	
+	@PutMapping("/updatealbum/{id}")
+	public ResponseEntity<Album> updateAlbum(@PathVariable Integer id, @RequestBody Album album) throws Exception{
+		logger.info("Updating album to: "+ album.toString());
+		
+		Album editedAlbum = albumService.findAlbumById(id);
+		editedAlbum.setAlbumName(album.getAlbumName());
+		albumService.updateAlbum(editedAlbum);
+		
+		return new ResponseEntity<Album>(HttpStatus.OK);
+	}
+
 }

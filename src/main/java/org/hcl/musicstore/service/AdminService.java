@@ -14,6 +14,10 @@ public class AdminService {
 
 	@Autowired
 	private AdminCrudRepository adminCrudRepository;
+	
+	public Admin findAdminById(int id) {
+		return adminCrudRepository.findAdminById(id);
+	}
 
 	public boolean validateAdmin(Admin admin) {
 		logger.info("admin: "+ admin.toString());
@@ -22,6 +26,10 @@ public class AdminService {
 
 	public Admin findByUsername(String username){
 		return adminCrudRepository.findByUsername(username);
+	}
+	
+	public void updateAdmin(Admin admin) {
+		adminCrudRepository.save(admin);
 	}
 
 

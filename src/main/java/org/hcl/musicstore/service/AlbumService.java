@@ -19,6 +19,10 @@ public class AlbumService {
 	public Iterable<Album> getAllAlbum() {
 		return albumCrudRepository.findAll();
 	}
+	
+	public Album findAlbumById(int id) {
+		return albumCrudRepository.findAlbumById(id);
+	}
 
 	public Optional<Album> getAlbum(int id) throws Exception {
 		Optional<Album> album = albumCrudRepository.findById(id);
@@ -49,6 +53,10 @@ public class AlbumService {
 		return albumCrudRepository.save(album);
 	}
 	
+	public void updateAlbum(Album album) {
+		albumCrudRepository.save(album);
+	}
+	
 	public boolean deleteAlbumById(Integer id) throws Exception{
 		logger.info("deleting album with id: "+id);
 		if(albumCrudRepository.existsById(id)) {
@@ -59,4 +67,5 @@ public class AlbumService {
 		logger.error("album is null");
 		throw new Exception("Album not found");
     }
+
 }

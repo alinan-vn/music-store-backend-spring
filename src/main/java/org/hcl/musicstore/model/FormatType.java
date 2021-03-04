@@ -16,5 +16,8 @@ public class FormatType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name= "id")
     int id;
+    
+    @Column(name= "formattype_name")
+    String formatTypeName;
 
 }

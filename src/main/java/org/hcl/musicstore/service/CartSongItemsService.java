@@ -16,6 +16,10 @@ public class CartSongItemsService {
 	@Autowired
 	CartSongItemsCrudRepository cartSongItemsCrudRepository;
 	
+	public CartSongItems findCartSongItemsById(int id) {
+		return cartSongItemsCrudRepository.findCartSongItemsById(id);
+	}
+	
 	public Iterable<CartSongItems> getAllCartSong(){
         return cartSongItemsCrudRepository.findAll();
     }
@@ -37,12 +41,8 @@ public class CartSongItemsService {
 		return cartSongItemsCrudRepository.save(cartSongItems);
 	}
 	
-	public void updateCartSongItems(CartSongItems cartSongItems) throws Exception {
-		if(cartSongItems!= null) {
-			cartSongItemsCrudRepository.save(cartSongItems);
-		}
-		
-		throw new Exception("Cannot find song");
+	public void updateCartSongItems(CartSongItems cartSongItems) {
+		cartSongItemsCrudRepository.save(cartSongItems);
 	}
 	
 	public boolean deleteCartSongItemById(Integer id) throws Exception{

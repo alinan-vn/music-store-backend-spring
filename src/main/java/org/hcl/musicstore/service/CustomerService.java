@@ -15,6 +15,10 @@ public class CustomerService {
 
     @Autowired
     CustomerCrudRepository customerCrudRepository;
+    
+    public Customer findCustomerById(int id) {
+    	return customerCrudRepository.findCustomerById(id);
+    }
 
     public boolean validateCustomer(Customer customer) {
 		logger.info("customer: "+ customer.toString());
@@ -28,7 +32,7 @@ public class CustomerService {
     }
 
     //find customer by their id
-    public Optional<Customer> findCustomerById(int id) throws Exception{
+    public Optional<Customer> getCustomerById(int id) throws Exception{
         Optional<Customer> customer = customerCrudRepository.findById(id);
 
         if(customer!= null) {
@@ -68,6 +72,10 @@ public class CustomerService {
 		
 		logger.error("customer is null");
 		throw new Exception("Customer not found");
+    }
+    
+    public Customer updateCustomer(Customer customer){
+        return customerCrudRepository.save(customer);
     }
 
 
