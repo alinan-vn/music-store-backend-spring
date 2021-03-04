@@ -2,7 +2,7 @@ package org.hcl.musicstore.controller;
 
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Admin;
+import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Customer;
 import org.hcl.musicstore.service.CustomerService;
 import org.slf4j.Logger;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +54,7 @@ public class CustomerController {
 	
 	@GetMapping("/customer/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) throws Exception{
-		Optional<Customer> customer = customerService.findCustomerById(id);
+		Optional<Customer> customer = customerService.getCustomerById(id);
 		
 		return customer.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		
@@ -73,5 +74,20 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatecustomer/{id}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) throws Exception{
+		logger.info("Updating Customer to: "+ customer.toString());
+		
+		Customer editedCustomer = customerService.findCustomerById(id);
+		editedCustomer.setCustomerName(customer.getCustomerName());
+		editedCustomer.setEmail(customer.getEmail());
+		editedCustomer.setPassword(customer.getPassword());
+		editedCustomer.setPhone(customer.getPhone());
+		editedCustomer.setUsername(customer.getUsername()); //should we let the customer edit username?
+		customerService.updateCustomer(editedCustomer);
+		
+		return new ResponseEntity<Customer>(HttpStatus.OK);
 	}
 }

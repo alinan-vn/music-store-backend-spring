@@ -2,6 +2,7 @@ package org.hcl.musicstore.service;
 
 import java.util.Optional;
 
+import org.hcl.musicstore.model.Admin;
 import org.hcl.musicstore.model.BillingInfo;
 import org.hcl.musicstore.repository.BillingInfoCrudRepository;
 import org.slf4j.Logger;
@@ -15,6 +16,10 @@ public class BillingInfoService {
 	
 	@Autowired
 	BillingInfoCrudRepository billingInfoCrudRepository;
+	
+	public BillingInfo findBillingInfoById(int id) {
+		return billingInfoCrudRepository.findBillingInfoById(id);
+	}
 	
 	public Optional<BillingInfo> getBillingInfo(int id) throws Exception {
 		Optional<BillingInfo> billingInfo = billingInfoCrudRepository.findById(id);
@@ -44,5 +49,9 @@ public class BillingInfoService {
 		logger.error("billingInfo is null");
 		throw new Exception("billingInfo not found");
     }
+	
+	public void updateBillingInfo(BillingInfo customerInfo) {
+		billingInfoCrudRepository.save(customerInfo);
+	}
 
 }

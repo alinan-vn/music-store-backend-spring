@@ -2,6 +2,7 @@ package org.hcl.musicstore.service;
 
 import java.util.Optional;
 
+import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Category;
 import org.hcl.musicstore.repository.CategoryCrudRepository;
 import org.slf4j.Logger;
@@ -15,6 +16,10 @@ public class CategoryService {
 	
 	@Autowired
 	CategoryCrudRepository categoryCrudRepository;
+	
+	public Category findCategoryById(int id) {
+		return categoryCrudRepository.findCategoryById(id);
+	}
 	
 	public Iterable<Category> getAllCategory(){
         return categoryCrudRepository.findAll();
@@ -46,4 +51,8 @@ public class CategoryService {
 		logger.error("Category is null");
 		throw new Exception("Category not found");
     }
+	
+	public Category updateCategory(Category category) {
+		return categoryCrudRepository.save(category);
+	}
 }
