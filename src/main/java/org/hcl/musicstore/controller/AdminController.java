@@ -21,7 +21,6 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 
-
 	@PostMapping(value="/admin/login")
 	public ResponseEntity<?> adminLogin(@RequestParam String username, @RequestParam String password){
 
