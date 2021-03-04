@@ -13,21 +13,18 @@ import java.util.Optional;
 @Service
 public class AdminService {
 	private static Logger logger = LoggerFactory.getLogger(AdminService.class);
-	
+
 	@Autowired
-	AdminCrudRepository adminCrudRepository;
-	
+	private AdminCrudRepository adminCrudRepository;
+
 	public boolean validateAdmin(Admin admin) {
 		logger.info("admin: "+ admin.toString());
 		return adminCrudRepository.findById(admin.getId()) != null;
 	}
-	
-	public Admin findByUsername(String username){
-		   return adminCrudRepository.findByUsername(username);
-		}
 
-	public Optional<Admin> findByUsername(String username){
+	public Admin findByUsername(String username){
 		return adminCrudRepository.findByUsername(username);
 	}
+
 
 }
