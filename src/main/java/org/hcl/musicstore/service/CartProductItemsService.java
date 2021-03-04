@@ -36,15 +36,23 @@ public class CartProductItemsService {
 		return cartProductItemsCrudRepository.save(cartProductItems);
 	}
 	
-	public void updateCartProductItems(int quantity, int id) throws Exception {
-		CartProductItems cartProductItems = cartProductItemsCrudRepository.findById(id).get();
+	public void updateCartProductItems(CartProductItems cartProductItems) throws Exception {
 		if(cartProductItems!= null) {
-			cartProductItems.setQuantity(quantity);
+			cartProductItemsCrudRepository.save(cartProductItems);
 		}
-		
 		throw new Exception("Cannot find product");
 		
-		
 	}
+	
+	public boolean deleteCartProductItemById(Integer id) throws Exception{
+		logger.info("deleting cartProductItem with id: "+id);
+		if(cartProductItemsCrudRepository.existsById(id)) {
+			cartProductItemsCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("CartProductItem is null");
+		throw new Exception("CartProductItem not found");
+    }
 
 }

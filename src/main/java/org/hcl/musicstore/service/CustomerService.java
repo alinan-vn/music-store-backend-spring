@@ -17,13 +17,13 @@ public class CustomerService {
     CustomerCrudRepository customerCrudRepository;
 
     //find all customers
-    public Iterable<Customer> getAllCustomer(){
+    public Iterable<Customer> findAllCustomer(){
 
         return customerCrudRepository.findAll();
     }
 
     //find customer by their id
-    public Optional<Customer> getCustomer(int id) throws Exception{
+    public Optional<Customer> findCustomerById(int id) throws Exception{
         Optional<Customer> customer = customerCrudRepository.findById(id);
 
         if(customer!= null) {
@@ -36,7 +36,7 @@ public class CustomerService {
 
     }
     //find customer by their username
-    public Customer getCustomerByUsername(String username) throws Exception{
+    public Customer findCustomerByUsername(String username) throws Exception{
         Customer customer = customerCrudRepository.findCustomerByUsername(username);
 
         if(customer!= null) {
@@ -54,8 +54,15 @@ public class CustomerService {
         return customerCrudRepository.save(customer);
     }
 
-    public void deleteCustomer(Customer customer){
-         customerCrudRepository.delete(customer);
+    public boolean deleteCustomerById(Integer id) throws Exception{
+		logger.info("deleting customer with id: "+id);
+		if(customerCrudRepository.existsById(id)) {
+			customerCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("customer is null");
+		throw new Exception("Customer not found");
     }
 
 

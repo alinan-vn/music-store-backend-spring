@@ -36,5 +36,24 @@ public class CartSongItemsService {
 	public CartSongItems saveCartSongItems(CartSongItems cartSongItems) {
 		return cartSongItemsCrudRepository.save(cartSongItems);
 	}
+	
+	public void updateCartSongItems(CartSongItems cartSongItems) throws Exception {
+		if(cartSongItems!= null) {
+			cartSongItemsCrudRepository.save(cartSongItems);
+		}
+		
+		throw new Exception("Cannot find song");
+	}
+	
+	public boolean deleteCartSongItemById(Integer id) throws Exception{
+		logger.info("deleting cartSongItem with id: "+id);
+		if(cartSongItemsCrudRepository.existsById(id)) {
+			cartSongItemsCrudRepository.deleteById(id);
+			return true;
+		}
+		
+		logger.error("CartSongItem is null");
+		throw new Exception("CartSongItem not found");
+    }
 
 }
