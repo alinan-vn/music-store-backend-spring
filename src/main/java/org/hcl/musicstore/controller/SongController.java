@@ -33,7 +33,7 @@ public class SongController {
 	
 	@GetMapping("/song/{id}")
 	public ResponseEntity<Song> getSongById(@PathVariable Integer id) throws Exception{
-		Optional<Song> song = songService.findSongById(id);
+		Optional<Song> song = songService.getSongById(id);
 		
 		return song.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		
@@ -53,6 +53,20 @@ public class SongController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatesong/{id}")
+	public ResponseEntity<Song> updateSong(@PathVariable Integer id, @RequestBody Song song) throws Exception{
+		logger.info("Updating song to: "+ song.toString());
+		
+		Song editedSong = songService.findSongById(id);
+		editedSong.setArtist(song.getArtist());
+		editedSong.setImage(song.getImage());
+		editedSong.setPrice(song.getPrice());
+		editedSong.setSongName(song.getSongName());
+		songService.updateSong(editedSong);
+		
+		return new ResponseEntity<Song>(HttpStatus.OK);
 	}
 	
 }

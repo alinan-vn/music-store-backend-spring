@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class GenreController {
 	
 	@GetMapping("/genre/{id}")
 	public ResponseEntity<Genre> getGenreById(@PathVariable Integer id) throws Exception{
-		Optional<Genre> genre = genreService.findGenreById(id);
+		Optional<Genre> genre = genreService.getGenreById(id);
 		
 		return genre.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		
@@ -54,4 +55,17 @@ public class GenreController {
 		}
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
 	}
+	
+	@PutMapping("/updategenre/{id}")
+	public ResponseEntity<Genre> updateGenre(@PathVariable Integer id, @RequestBody Genre genre) throws Exception{
+		logger.info("Updating Genre to: "+ genre.toString());
+		
+		Genre editedGenre = genreService.findGenreById(id);
+		editedGenre.setGenreName(genre.getGenreName());
+		editedGenre.setImage(genre.getImage());
+		genreService.updateGenre(editedGenre);
+		
+		return new ResponseEntity<Genre>(HttpStatus.OK);
+	}
+	
 }

@@ -4,4 +4,5 @@ import org.hcl.musicstore.model.ConditionType;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ConditionCrudRepository extends CrudRepository<ConditionType, Integer> {
+	public ConditionType findConditionTypeById(Integer id);
 }

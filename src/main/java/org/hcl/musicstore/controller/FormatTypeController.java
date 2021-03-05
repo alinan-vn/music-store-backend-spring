@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class FormatTypeController {
 	
 	@GetMapping("/formattype/{id}")
 	public ResponseEntity<FormatType> getAlbumById(@PathVariable Integer id) throws Exception{
-		Optional<FormatType> formatType = formatTypeService.findFormatTypeById(id);
+		Optional<FormatType> formatType = formatTypeService.getFormatTypeById(id);
 		
 		return formatType.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 	}
@@ -52,6 +53,15 @@ public class FormatTypeController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateformattype/{id}")
+	public ResponseEntity<FormatType> updateFormatType(@PathVariable Integer id, @RequestBody FormatType formatType) throws Exception{
+		logger.info("Updating album to: "+ formatType.toString());
+		FormatType editedFormatType = formatTypeService.findFormatTypeById(id);
+		editedFormatType.setFormatTypeName(formatType.getFormatTypeName());
+		formatTypeService.updateFormatType(editedFormatType);
+		return new ResponseEntity<FormatType>(HttpStatus.OK);
 	}
 	
 }
