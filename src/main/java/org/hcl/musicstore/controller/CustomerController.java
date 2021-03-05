@@ -2,6 +2,7 @@ package org.hcl.musicstore.controller;
 
 import java.util.Optional;
 
+import org.hcl.musicstore.model.Admin;
 import org.hcl.musicstore.model.Customer;
 import org.hcl.musicstore.service.CustomerService;
 import org.slf4j.Logger;
@@ -9,13 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -30,7 +25,28 @@ public class CustomerController {
 		customerService.updateAndSaveCustomer(customer);
 		return new ResponseEntity<Customer>(HttpStatus.OK);
 	}
-	
+
+	@PostMapping(value="/login")
+	public ResponseEntity<?> Login(@RequestBody Customer customer) throws Exception {
+
+		Customer customer1 = customerService.findCustomerByUsername(customer.getUsername());
+
+		if(customer1.getPassword().equals(customer.getPassword())) {
+				return ResponseEntity.ok(customer);
+		}
+
+
+		return ResponseEntity.badRequest().body("Invalid admin credentials");
+	}
+
+	@PostMapping(value="/register")
+	public ResponseEntity<?> Register(@RequestBody Customer customer) throws Exception {
+		customerService.createCustomer(customer);
+		return ResponseEntity.badRequest().body("Invalid admin credentials");
+	}
+
+
+
 	@GetMapping("/customer")
 	public Iterable<Customer> getCustomerDetails(){
 		return customerService.findAllCustomer();

@@ -65,6 +65,10 @@ public class CustomerService {
 		throw new Exception("Customer not found");
     }
 
+    public void createCustomer(Customer customer){
+        customerCrudRepository.save(customer);
+    }
+
 
 
 }

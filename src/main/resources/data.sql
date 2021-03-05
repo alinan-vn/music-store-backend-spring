@@ -10,21 +10,21 @@ INSERT INTO  category(id, category_name) VALUES (6,'audio');
 
 
 
-INSERT INTO product(id,product_name,description,price) VALUES(2,'Guitar','Guitar made by music INC','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(3,'Drums','Drum set','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(4,'Flute','A flute to make music','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(1,'Cello','a really nice sounding cello','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(5,'Thank me Later','Album by Drake','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(6,'Thriller','Album by Michael Jackson','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(7,'Suga','Album by Meg Thee Stallion','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(8,'T-Shirt','T Shirt with music design','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(9,'Braclet','Music braclet','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(10,'Key-Chain','Keychain with music emblem','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(11,'Beats Solo','Beats by Dre from Apple','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(12,'Sony XM4','Sony over the ear headphones','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(13,'Airpods','Flex on em','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(14,'9mm Audio cable','Cable to plug things in','1000.99');
-INSERT INTO product(id,product_name,description,price) VALUES(15,'Turntables','Just buy a Macbook','1000.99');
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(2,'Guitar','Guitar made by music INC','1000.99',2);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(3,'Drums','Drum set','1000.99',2);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(4,'Flute','A flute to make music','1000.99',2);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(1,'Cello','a really nice sounding cello','1000.99',2);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(5,'Thank me Later','Album by Drake','1000.99',3);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(6,'Thriller','Album by Michael Jackson','1000.99',3);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(7,'Suga','Album by Meg Thee Stallion','1000.99',3);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(8,'T-Shirt','T Shirt with music design','1000.99',4);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(9,'Braclet','Music braclet','1000.99',5);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(10,'Key-Chain','Keychain with music emblem','1000.99',5);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(11,'Beats Solo','Beats by Dre from Apple','1000.99',6);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(12,'Sony XM4','Sony over the ear headphones','1000.99',6);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(13,'Airpods','Flex on em','1000.99',6);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(14,'9mm Audio cable','Cable to plug things in','1000.99',5);
+INSERT INTO product(id,product_name,description,price,category_id) VALUES(15,'Turntables','Just buy a Macbook','1000.99',1);
 
 INSERT INTO  genre(id, genre_name) VALUES (1,'hiphop');
 INSERT INTO  genre(id, genre_name) VALUES (2,'pop');

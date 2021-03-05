@@ -32,7 +32,7 @@ public class CartProductItems {
     @JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Product product;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "shopping_cart_id", nullable=false)
 	private ShoppingCart shoppingCart;
 
