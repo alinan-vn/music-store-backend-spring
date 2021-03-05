@@ -1,6 +1,5 @@
 package org.hcl.musicstore.controller;
 
-import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Category;
 import org.hcl.musicstore.service.CategoryService;
 import org.slf4j.Logger;

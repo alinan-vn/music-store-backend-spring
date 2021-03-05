@@ -2,7 +2,6 @@ package org.hcl.musicstore.service;
 
 import java.util.Optional;
 
-import org.hcl.musicstore.model.Album;
 import org.hcl.musicstore.model.Category;
 import org.hcl.musicstore.repository.CategoryCrudRepository;
 import org.slf4j.Logger;
