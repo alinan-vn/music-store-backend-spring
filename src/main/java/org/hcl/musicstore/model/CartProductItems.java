@@ -28,8 +28,8 @@ public class CartProductItems {
 	@Column(name="quantity")
 	int quantity;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Product product;
 	
 	@ManyToOne(cascade = CascadeType.ALL)

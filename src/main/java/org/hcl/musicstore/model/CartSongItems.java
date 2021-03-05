@@ -28,11 +28,11 @@ public class CartSongItems {
 	@Column(name="quantity")
 	int quantity;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "song_id", referencedColumnName = "id")
 	private Song song;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "shopping_cart_id", nullable=false)
 	private ShoppingCart shoppingCart;
 	
