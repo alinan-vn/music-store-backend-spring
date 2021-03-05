@@ -15,13 +15,17 @@ public class ProductService {
 
 	@Autowired
 	ProductCrudRepository productCrudRepository;
+	
+	public Product findProductById(int id) {
+		return productCrudRepository.findProductById(id);
+	}
 
 	public Iterable<Product> findAllProduct() {
 
 		return productCrudRepository.findAll();
 	}
 
-	public Optional<Product> findProductById(int id) throws Exception {
+	public Optional<Product> getProductById(int id) throws Exception {
 		Optional<Product> product = productCrudRepository.findById(id);
 
 		if (product != null) {
@@ -60,6 +64,10 @@ public class ProductService {
 
 		logger.error("product is null");
 		throw new Exception("Product not found");
+	}
+	
+	public Product updateProduct(Product product) {
+		return productCrudRepository.save(product);
 	}
 
 }

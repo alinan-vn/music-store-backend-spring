@@ -16,12 +16,16 @@ public class GenreService {
 
     @Autowired
     GenreCrudRepository genreCrudRepository;
+    
+    public Genre findGenreById(int id) {
+    	return genreCrudRepository.findGenreById(id);
+    }
 
     public Iterable<Genre> findAllGenre(){
         return genreCrudRepository.findAll();
     }
 
-    public Optional<Genre> findGenreById(int id) throws Exception{
+    public Optional<Genre> getGenreById(int id) throws Exception{
         Optional<Genre> genre = genreCrudRepository.findById(id);
 
         if(genre!= null) {
@@ -47,5 +51,9 @@ public class GenreService {
 		logger.error("genre is null");
 		throw new Exception("Genre not found");
     }
+	
+	public Genre updateGenre(Genre genre) {
+		return genreCrudRepository.save(genre);
+	}
 
 }

@@ -16,6 +16,10 @@ public class ConditionTypeService {
 	@Autowired
 	ConditionCrudRepository conditionCrudRepository;
 	
+	public ConditionType findConditionTypeById(int id) {
+		return conditionCrudRepository.findConditionTypeById(id);
+	}
+	
 	 public Iterable<ConditionType> getAllConditionType(){
 	        return conditionCrudRepository.findAll();
 	    }
@@ -46,5 +50,9 @@ public class ConditionTypeService {
 		logger.error("ConditionType is null");
 		throw new Exception("ConditionType not found");
     }
+	
+	public ConditionType updateConditionType(ConditionType conditionType) {
+		return conditionCrudRepository.save(conditionType);
+	}
 	
 }

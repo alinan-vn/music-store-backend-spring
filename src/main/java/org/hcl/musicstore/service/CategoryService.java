@@ -16,6 +16,10 @@ public class CategoryService {
 	@Autowired
 	CategoryCrudRepository categoryCrudRepository;
 	
+	public Category findCategoryById(int id) {
+		return categoryCrudRepository.findCategoryById(id);
+	}
+	
 	public Iterable<Category> getAllCategory(){
         return categoryCrudRepository.findAll();
     }
@@ -46,4 +50,8 @@ public class CategoryService {
 		logger.error("Category is null");
 		throw new Exception("Category not found");
     }
+	
+	public Category updateCategory(Category category) {
+		return categoryCrudRepository.save(category);
+	}
 }

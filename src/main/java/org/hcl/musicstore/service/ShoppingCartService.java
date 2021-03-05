@@ -15,6 +15,10 @@ public class ShoppingCartService {
 
     @Autowired
     ShoppingCartCrudRepository shoppingCartCrudRepository;
+    
+    public ShoppingCart findShoppingCartById(int id) {
+    	return shoppingCartCrudRepository.findShoppingCartById(id);
+    }
 
     public Iterable<ShoppingCart> getAllShoppingCart(){
         return shoppingCartCrudRepository.findAll();
@@ -43,5 +47,9 @@ public class ShoppingCartService {
 		
 		logger.error("shopping cart is null");
 		throw new Exception("Shopping Cart not found");
+    }
+    
+    public ShoppingCart updateShoppingCart(ShoppingCart shoppingCart){
+        return shoppingCartCrudRepository.save(shoppingCart);
     }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReceiptCrudRepository extends CrudRepository<Receipt, Integer> {
     public List<Receipt> findReceiptByCustomerId(int id);
+    public Receipt findReceiptById(Integer id);
 }

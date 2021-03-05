@@ -16,12 +16,16 @@ public class ReceiptService {
 
     @Autowired
     ReceiptCrudRepository receiptCrudRepository;
+    
+    public Receipt findReceiptById(int id) {
+    	return receiptCrudRepository.findReceiptById(id);
+    }
 
     public Iterable<Receipt> findAllReceipts(){
         return receiptCrudRepository.findAll();
     }
     
-    public Optional<Receipt> findReceiptById(int id) throws Exception{
+    public Optional<Receipt> getReceiptById(int id) throws Exception{
         Optional<Receipt> receipt = receiptCrudRepository.findById(id);
 
         if(receipt!= null) {
@@ -57,6 +61,10 @@ public class ReceiptService {
 		
 		logger.error("receipt is null");
 		throw new Exception("Receipt not found");
+    }
+    
+    public Receipt updateReceipt(Receipt receipt){
+        return receiptCrudRepository.save(receipt);
     }
 
 }

@@ -26,9 +26,11 @@ public class CartSongItemsController {
 	}
 	
 	@PutMapping("/updatecartsongs/{id}")
-	public ResponseEntity<CartSongItems> updateCartProductItems(@RequestBody CartSongItems cartSongItems) throws Exception{
+	public ResponseEntity<CartSongItems> updateCartProductItems(@PathVariable Integer id, @RequestBody CartSongItems cartSongItems) throws Exception{
 		logger.info("Updating cartSongItems: "+ cartSongItems.toString());
-		cartSongItemsService.updateCartSongItems(cartSongItems);
+		CartSongItems editedCartSongItems = cartSongItemsService.findCartSongItemsById(id);
+		editedCartSongItems.setQuantity(cartSongItems.getQuantity());
+		cartSongItemsService.updateCartSongItems(editedCartSongItems);
 		return new ResponseEntity<CartSongItems>(HttpStatus.OK);
 	}
 	

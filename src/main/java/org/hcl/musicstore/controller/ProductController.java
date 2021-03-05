@@ -34,7 +34,7 @@ public class ProductController {
 	
 	@GetMapping("/product/{id}")
 	public ResponseEntity<Product> getProductById(@PathVariable Integer id) throws Exception{
-		Optional<Product> product = productService.findProductById(id);
+		Optional<Product> product = productService.getProductById(id);
 		
 		return product.map(response -> ResponseEntity.ok().body(response)).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 		
@@ -54,6 +54,20 @@ public class ProductController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<>("Successfully Deleted "+ id, HttpStatus.OK);
+	}
+	
+	@PutMapping("/updateproduct/{id}")
+	public ResponseEntity<Product> updateCartProductItems(@PathVariable Integer id, @RequestBody Product product) throws Exception{
+		logger.info("Updating product to: "+ product.toString());
+		
+		Product editedProduct = productService.findProductById(id);
+		editedProduct.setProductName(product.getProductName());
+		editedProduct.setDescription(product.getDescription());
+		editedProduct.setImage(product.getImage());
+		editedProduct.setPrice(product.getPrice());
+		productService.updateProduct(editedProduct);
+		
+		return new ResponseEntity<Product>(HttpStatus.OK);
 	}
 	
 }
